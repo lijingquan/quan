@@ -1,4 +1,4 @@
-package com.util.activemq;
+package com.quan.common;
 
 import javax.jms.Message;
 import javax.jms.MessageListener;
