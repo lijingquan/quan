@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+	<description>配置数据源信息</description>
+	
+	 <!-- 配置进行  -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <!-- <value>classpath:redis.properties</value> -->
+            </list>
+        </property>
+    </bean>
+	
+	
+	<bean id="abstractXADataSource" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close" abstract="true">    
+       <property name="xaDataSourceClassName" value="${jdbc.xaDataSourceClassName}"/>  <!-- SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]  -->  
+       <property name="poolSize" value="10" />    
+       <property name="minPoolSize" value="10"/>    
+       <property name="maxPoolSize" value="30"/>    
+       <property name="borrowConnectionTimeout" value="60"/>    
+       <property name="reapTimeout" value="20"/>    
+       <property name="maxIdleTime" value="60"/>    
+       <property name="maintenanceInterval" value="60"/>    
+       <property name="loginTimeout" value="60"/>    
+    </bean>   
+	
+	<!-- 设置数据源属性 -->
+	<bean id="dataSourceMysql" parent="abstractXADataSource">    
+        <property name="uniqueResourceName" value="mysql" />    
+        <property name="xaProperties">  
+            <props>  
+                <prop key="driverClassName">${mysql.jdbc.driver}</prop>  
+                <prop key="url">${mysql.jdbc.url}</prop>  
+                <prop key="password">${mysql.jdbc.password}</prop>  
+                 <!--  <prop key="user">${jdbc.username}</prop> --> <!-- mysql -->  
+                <prop key="username">${mysql.jdbc.username}</prop>   <!-- durid -->  
+                <prop key="initialSize">0</prop>  
+                <prop key="maxActive">20</prop> <!-- 若不配置则代码执行"{dataSource-1} inited"此处停止  -->  
+                <prop key="minIdle">0</prop>  
+                <prop key="maxWait">60000</prop>  
+                <prop key="validationQuery">select 1</prop>  
+                <prop key="testOnBorrow">false</prop>  
+                <prop key="testOnReturn">false</prop>  
+                <prop key="testWhileIdle">true</prop>  
+                <prop key="removeAbandoned">true</prop>  
+                <prop key="removeAbandonedTimeout">1800</prop>  
+                <prop key="logAbandoned">true</prop>  
+                <prop key="filters">mergeStat</prop>  
+            </props>  
+        </property>  
+    </bean>
+    
+    <bean id="dataSourceOracle" parent="abstractXADataSource">    
+        <property name="uniqueResourceName" value="oracle" />    
+        <property name="xaProperties">  
+            <props>  
+                <prop key="driverClassName">${oracle.jdbc.driver}</prop>  
+                <prop key="url">${oracle.jdbc.url}</prop>  
+                <prop key="password">${oracle.jdbc.password}</prop>  
+                 <!--  <prop key="user">${jdbc.username}</prop> --> <!-- mysql -->  
+                <prop key="username">${oracle.jdbc.username}</prop>   <!-- durid -->  
+                <prop key="initialSize">0</prop>  
+                <prop key="maxActive">20</prop> <!-- 若不配置则代码执行"{dataSource-1} inited"此处停止  -->  
+                <prop key="minIdle">0</prop>  
+                <prop key="maxWait">60000</prop>  
+                <prop key="validationQuery">select 1 from dual</prop>  
+                <prop key="testOnBorrow">false</prop>  
+                <prop key="testOnReturn">false</prop>  
+                <prop key="testWhileIdle">true</prop>  
+                <prop key="removeAbandoned">true</prop>  
+                <prop key="removeAbandonedTimeout">1800</prop>  
+                <prop key="logAbandoned">true</prop>  
+                <prop key="filters">mergeStat</prop>  
+            </props>  
+        </property>  
+    </bean>
+
+</beans>

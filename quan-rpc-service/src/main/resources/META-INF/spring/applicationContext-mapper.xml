@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- Mapper的管理及注入 -->
+	<bean id="scannerConfigurerMysql" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryMysql" />
+		<property name="basePackage" value="com.quan.dao.mapper.mysql" />
+	</bean>
+
+	<bean id="scannerConfigurerOracle" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryOracle" />
+		<property name="basePackage" value="com.quan.dao.mapper.oracle" />
+	</bean>
+
+</beans>
