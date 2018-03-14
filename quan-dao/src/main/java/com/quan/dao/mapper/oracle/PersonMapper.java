@@ -1,4 +1,4 @@
-package com.quan.rpc.dao.mapper.oracle;
+package com.quan.dao.mapper.oracle;
 
 import com.quan.dao.model.Person;
 import com.quan.dao.model.PersonExample;

@@ -19,4 +19,6 @@
 	<bean id="dubboService" class="com.quan.rpc.service.impl.DubboServiceImpl" />
 	<dubbo:service interface="com.quan.rpc.api.DubboService" ref="dubboService" timeout="10000" />
 
+    <bean id="transactionService" class="com.quan.rpc.service.impl.TransactionServiceImpl" />
+	<dubbo:service interface="com.quan.rpc.api.TransactionService" ref="transactionService" timeout="10000" />
 </beans>

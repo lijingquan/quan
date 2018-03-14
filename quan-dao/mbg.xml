@@ -11,15 +11,15 @@
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 		
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+		<!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
 			connectionURL="jdbc:mysql://localhost:3306/ssm-crud" userId="root"
 			password="root">
-		</jdbcConnection>
+		</jdbcConnection> -->
 		
-		<!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
 			connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="test"
 			password="test">
-		</jdbcConnection> -->
+		</jdbcConnection>
 
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
@@ -31,19 +31,19 @@
 			<property name="trimStrings" value="true" />
 		</javaModelGenerator>
 
-		<sqlMapGenerator targetPackage="com.quan.dao.mapper.mysql" targetProject="./src/main/java">
+		<sqlMapGenerator targetPackage="com.quan.rpc.dao.mapper.oracle" targetProject="../quan-rpc-service/src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</sqlMapGenerator>
 
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.quan.rpc.dao.mapper.mysql" targetProject="../quan-rpc-service/src/main/java">
+			targetPackage="com.quan.dao.mapper.oracle" targetProject="./src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
 		<!-- 每个表的生成策略 -->
-		<table tableName="tbl_emp" domainObjectName="Employees"></table>
-		<table tableName="tbl_dept" domainObjectName="Department"></table>
+		<!-- <table tableName="tbl_emp" domainObjectName="Employees"></table>
+		<table tableName="tbl_dept" domainObjectName="Department"></table> -->
 		
-		<!-- <table tableName="person" domainObjectName="Person"></table> -->
+		<table tableName="person" domainObjectName="Person"></table>
 	</context>
 </generatorConfiguration>

@@ -13,4 +13,5 @@
 
 	<dubbo:reference id="dubboService" interface="com.quan.rpc.api.DubboService" />
 
+	<dubbo:reference id="transactionService" interface="com.quan.rpc.api.TransactionService" />
 </beans>

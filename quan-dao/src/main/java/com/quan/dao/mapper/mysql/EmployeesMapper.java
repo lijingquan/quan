@@ -1,4 +1,4 @@
-package com.quan.rpc.dao.mapper.mysql;
+package com.quan.dao.mapper.mysql;
 
 import com.quan.dao.model.Employees;
 import com.quan.dao.model.EmployeesExample;
